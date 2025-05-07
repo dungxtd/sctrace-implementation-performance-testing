@@ -6,7 +6,7 @@ execution:
 
 scenarios:
   google_search_scenario:
-    script: ../../tests/web/selenium/web_performance_test.py
+    script: ../../../tests/web/selenium/web_performance_test.py
     iterations: 5
     concurrency: 3
     hold-for: 1m
@@ -15,7 +15,7 @@ reporting:
 - module: console
 - module: final-stats
 - module: junit-xml
-  outfile: ../../results/performance_results/baseline/web/web_test_result.xml
+  outfile: ../../../results/performance_results/baseline/web/web_test_result.xml
 
 # - module: html
 #   output: ../../results/performance_results/baseline/web/web_report.html
