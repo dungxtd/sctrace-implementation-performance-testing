@@ -1,0 +1,12 @@
+execution:
+  - executor: jmeter
+    scenario: db_query_scenario
+
+scenarios:
+  db_query_scenario:
+    script: tests/db/jmeter/db_performance_test.jmx
+    iterations: 10
+    hold-for: 5m
+    concurrency: 10
+
+

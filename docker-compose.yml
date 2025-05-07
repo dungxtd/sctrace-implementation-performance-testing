@@ -1,0 +1,20 @@
+services:
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    shm_size: "2g"
+
+  taurus:
+    image: blazemeter/taurus
+    volumes:
+      - ./tests:/tests
+      - ./results:/results
+    depends_on:
+      - selenium
+    env_file:
+      - .env
+    environment:
+      SELENIUM_URL: http://selenium:4444/wd/hub
+    command: "/tests/web/taurus/web_performance.yaml"
+

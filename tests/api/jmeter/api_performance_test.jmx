@@ -1,0 +1,22 @@
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<TestPlan>
+  <ThreadGroup>
+    <name>API Load Test</name>
+    <num_threads>10</num_threads>
+    <ramp_time>5</ramp_time>
+    <duration>600</duration>
+
+    <HTTPSamplerProxy>
+      <name>Google API Test</name>
+      <domain>www.googleapis.com</domain>
+      <path>/drive/v3/files</path>
+      <method>GET</method>
+    </HTTPSamplerProxy>
+
+    <ResultCollector>
+      <name>Test Results</name>
+      <filename>results.jtl</filename>
+    </ResultCollector>
+  </ThreadGroup>
+</TestPlan>

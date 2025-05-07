@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestPlan>
+  <ThreadGroup>
+    <name>DB Load Test</name>
+    <num_threads>10</num_threads>
+    <ramp_time>5</ramp_time>
+    <duration>600</duration>
+
+    <JDBCRequest>
+      <name>Database Query Test</name>
+      <query>SELECT * FROM users WHERE id = 1;</query>
+    </JDBCRequest>
+
+    <ResultCollector>
+      <name>Test Results</name>
+      <filename>results.jtl</filename>
+    </ResultCollector>
+  </ThreadGroup>
+</TestPlan>
+

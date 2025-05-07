@@ -1,0 +1,11 @@
+execution:
+  - executor: appium
+    scenario: mobile_search_scenario
+
+scenarios:
+  mobile_search_scenario:
+    script: tests/mobile/appium/mobile_performance_test.py
+    iterations: 5
+    concurrency: 3
+    hold-for: 1m
+

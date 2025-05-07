@@ -1,0 +1,20 @@
+execution:
+- executor: selenium
+  scenario: google_search_scenario
+
+scenarios:
+  google_search_scenario:
+    script: /tests/web/selenium/web_performance_test.py
+    webdriver: Remote
+    remote: ${SELENIUM_URL}
+    capabilities:
+      browserName: chrome
+    iterations: 5
+    concurrency: 3
+    hold-for: 1m
+
+reporting:
+- module: console
+- module: final-stats
+- module: junit-xml
+  outfile: /results/performance_results/baseline/web/web_test_result.xml

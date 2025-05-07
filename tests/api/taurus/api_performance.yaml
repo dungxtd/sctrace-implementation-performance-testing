@@ -1,0 +1,22 @@
+execution:
+  - executor: jmeter
+    scenario: google_api_scenario
+
+scenarios:
+  google_api_scenario:
+    script: tests/api/jmeter/api_performance_test.jmx
+    iterations: 10
+    hold-for: 5m
+    concurrency: 10
+
+reporting:
+  - module: final-stats
+  - module: junit-xml
+    outfile: results/performance_results/baseline/api/api_test_result.xml
+  - module: console
+  - module: html
+    output: results/performance_results/baseline/api/api_report.html
+
+modules:
+  jmeter:
+    detect-plugins: true
