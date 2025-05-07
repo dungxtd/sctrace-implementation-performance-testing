@@ -4,34 +4,32 @@ from selenium.webdriver.chrome.options import Options
 import time
 import os
 
-def web_performance_test():
-    remote_url = os.getenv("SELENIUM_URL", "http://localhost:4444/wd/hub")
+class TestGoogleSearch:
+    def createModel():
+        service = Service(ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
 
-    chrome_options = Options()
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+        driver = webdriver.Chrome(service=service, options=options)
+        return driver
 
-    driver = webdriver.Remote(
-        command_executor=remote_url,
-        options=chrome_options
-    )
+    def test_web_performance(self):
+        driver = webdriver.Chrome()  # Sử dụng ChromeDriver
+        driver.get('https://www.google.com')
 
-    print(f"remote_url: {remote_url}")
+        start_time = time.time()
 
+        search_box = driver.find_element_by_name('q')
+        search_box.send_keys('Selenium performance testing')
+        search_box.submit()
 
-    driver.get('https://www.google.com')
-    start_time = time.time()
+        time.sleep(3)  # Đợi trang tải kết quả
 
-    search_box = driver.find_element(By.NAME, 'q')
-    search_box.send_keys('Selenium performance testing')
-    search_box.submit()
+        load_time = time.time() - start_time
+        print(f"Web UI load time: {load_time} seconds")
 
-    time.sleep(3)
+        driver.quit()
 
-    load_time = time.time() - start_time
-    print(f"Web UI load time: {load_time:.2f} seconds")
-
-    driver.quit()
-
-if __name__ == "__main__":
-    web_performance_test()
+    if __name__ == "__main__":
+        web_performance_test()
