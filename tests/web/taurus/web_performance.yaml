@@ -1,10 +1,8 @@
 execution:
 - executor: selenium
+  runner: pytest
+  iterations: 3
   scenario: google_search_scenario
-  options:
-    browser: chrome
-    additional-args:
-    - "--user-data-dir=/tmp/chrome-profile-${__time()}-${__threadNum}"
 
 scenarios:
   google_search_scenario:
