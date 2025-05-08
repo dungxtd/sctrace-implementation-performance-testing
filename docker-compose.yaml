@@ -4,9 +4,16 @@ services:
       context: .
       dockerfile: config/docker/robot-appium/Dockerfile
     container_name: robot-appium
+    environment:
+      - CONNECT_TO_GRID=true
+      - SELENIUM_HOST=selenium_hub
+      - REMOTE_ADB=true
+      - REMOTE_ADB_POLLING_SEC=60
     ports:
       - 4723:4723
     volumes:
-      - ./tests:/home/pwuser/tests
+      - ./tests:/home/androidusr/tests
       - /dev/bus/usb:/dev/bus/usb
+      - ~/.android:/root/.android
     privileged: true
+    # command: "robot tests/mobile/robot/test.robot"

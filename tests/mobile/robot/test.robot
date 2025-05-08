@@ -2,15 +2,19 @@
 Library    AppiumLibrary
 Library    BuiltIn
 
+*** Variables ***
+${REMOTE_ADB_HOST}    host.docker.internal
+
 *** Keywords ***
 Open Clock App
     Open Application    
-    ...    remote_url=http://appium:4723
+    ...    remote_url=http://localhost:4723
     ...    platformName=Android
-    ...    deviceName=1aaa0c0e
+    ...    deviceName=emulator-5554
     ...    appPackage=com.android.deskclock
     ...    appActivity=com.android.deskclock.DeskClockTabActivity
     ...    automationName=UiAutomator2
+    ...    appium:remoteAdbHost=${REMOTE_ADB_HOST}
 
 Delete All Timers
     Long Press    
