@@ -17,3 +17,11 @@ docker run -it `
   -v "${PWD}/results:/bzt-configs/results" `
   taurus-selenium-jmeter:latest `
   tests/api/jmeter/simple-assert.yml
+
+
+docker run -it `
+  --platform linux/amd64 `
+  -v "${PWD}/tests:/home/pwuser/tests" `
+  -v "${PWD}/results:/bzt-configs/results" `
+  robot-appium:latest `
+  bash -c "robot --outputdir test/output tests/mobile/robot/test.robot"
