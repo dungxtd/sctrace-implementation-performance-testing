@@ -18,11 +18,11 @@ Run the following commands to build the Docker images:
 ```powershell
 # Build the Selenium JMeter Docker Image
 # For PowerShell
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
+docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
 
 # Build the Appium Docker Image
 # For PowerShell
-docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
+cd ./config/docker/appium-docker-android; docker build -t taurus-appium:latest .; cd ../../../
 ```
 
 ### Web Performance Test
@@ -59,11 +59,11 @@ Run the following commands to build the Docker images:
 ```bash
 # Build the Selenium JMeter Docker Image
 # For Bash
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
+docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
 
 # Build the Appium Docker Image
 # For Bash
-docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
+cd ./config/docker/appium-docker-android && docker build -t taurus-appium:latest .
 ```
 
 ### Web Performance Test
