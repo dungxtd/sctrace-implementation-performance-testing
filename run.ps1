@@ -1,7 +1,6 @@
 # Build the Docker image
 
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
-docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
+docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
 
 # Run the first container for the web performance test
 docker run -it `

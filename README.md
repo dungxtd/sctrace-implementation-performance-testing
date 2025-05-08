@@ -19,10 +19,6 @@ Run the following commands to build the Docker images:
 # Build the Selenium JMeter Docker Image
 # For PowerShell
 docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
-
-# Build the Appium Docker Image
-# For PowerShell
-cd ./config/docker/appium-docker-android; docker build -t taurus-appium:latest .; cd ../../../
 ```
 
 ### Web Performance Test
@@ -60,10 +56,6 @@ Run the following commands to build the Docker images:
 # Build the Selenium JMeter Docker Image
 # For Bash
 docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
-
-# Build the Appium Docker Image
-# For Bash
-cd ./config/docker/appium-docker-android && docker build -t taurus-appium:latest .
 ```
 
 ### Web Performance Test
