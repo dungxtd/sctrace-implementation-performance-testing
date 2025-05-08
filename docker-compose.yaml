@@ -1,0 +1,12 @@
+services:
+  robot-appium:
+    build:
+      context: .
+      dockerfile: config/docker/robot-appium/Dockerfile
+    container_name: robot-appium
+    ports:
+      - 4723:4723
+    volumes:
+      - ./tests:/home/pwuser/tests
+      - /dev/bus/usb:/dev/bus/usb
+    privileged: true
