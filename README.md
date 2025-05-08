@@ -10,33 +10,25 @@ This guide provides instructions on how to build and run Docker containers for w
 
 Navigate to the root directory of the project where the Dockerfiles are located.
 
-### Build the Selenium JMeter Docker Image
+## Windows
 
-```bash
+### Building Docker Images
+Run the following commands to build the Docker images:
+
+```powershell
+# Build the Selenium JMeter Docker Image
 # For PowerShell
 docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
 
-# For Bash
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
-```
-
-### Build the Appium Docker Image
-
-```bash
+# Build the Appium Docker Image
 # For PowerShell
 docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
-
-# For Bash
-docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
 ```
-
-## Running Docker Containers
 
 ### Web Performance Test
-
 Run the following command to start the container for web performance testing:
 
-```bash
+```powershell
 # For PowerShell
 docker run -it `
   --platform linux/amd64 `
@@ -44,7 +36,40 @@ docker run -it `
   -v "${PWD}/results:/bzt-configs/results" `
   taurus-selenium-jmeter:latest `
   tests/web/taurus/web_performance.yaml
+```
 
+### API JMeter Test
+Run the following command to start the container for API JMeter testing:
+
+```powershell
+# For PowerShell
+docker run -it `
+  --platform linux/amd64 `
+  -v "${PWD}/tests:/bzt-configs/tests" `
+  -v "${PWD}/results:/bzt-configs/results" `
+  taurus-selenium-jmeter:latest `
+  tests/api/jmeter/simple-assert.yml
+```
+
+## Linux/MacOS
+
+### Building Docker Images
+Run the following commands to build the Docker images:
+
+```bash
+# Build the Selenium JMeter Docker Image
+# For Bash
+docker build -t taurus-selenium-jmeter:latest -f ./config/docker/SeleJmeter.Dockerfile .
+
+# Build the Appium Docker Image
+# For Bash
+docker build -t taurus-appium:latest -f ./config/docker/Appium.Dockerfile .
+```
+
+### Web Performance Test
+Run the following command to start the container for web performance testing:
+
+```bash
 # For Bash
 docker run -it \
   --platform linux/amd64 \
@@ -55,18 +80,9 @@ docker run -it \
 ```
 
 ### API JMeter Test
-
 Run the following command to start the container for API JMeter testing:
 
 ```bash
-# For PowerShell
-docker run -it `
-  --platform linux/amd64 `
-  -v "${PWD}/tests:/bzt-configs/tests" `
-  -v "${PWD}/results:/bzt-configs/results" `
-  taurus-selenium-jmeter:latest `
-  tests/api/jmeter/simple-assert.yml
-
 # For Bash
 docker run -it \
   --platform linux/amd64 \
