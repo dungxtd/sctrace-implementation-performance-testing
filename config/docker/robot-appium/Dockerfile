@@ -102,14 +102,12 @@ RUN chown -R 1300:1301 /usr/lib/node_modules/appium
 # Copy scripts
 #==============
 ENV SCRIPT_PATH="appium-docker-android"
-RUN mkdir -p ${SCRIPT_PATH}
-COPY config/docker/robot-appium/start.sh \
-     config/docker/robot-appium/generate_selenium_config.sh \
-     config/docker/robot-appium/wireless_autoconnect.sh \
-     config/docker/robot-appium/wireless_connect.sh \
-     /home/androidusr/${SCRIPT_PATH}
-RUN chown -R 1300:1301 ${SCRIPT_PATH}
 ENV APP_PATH=/home/androidusr/${SCRIPT_PATH}
+RUN mkdir -p ${APP_PATH}
+COPY config/docker/robot-appium/*.sh \
+    ${APP_PATH}
+RUN chown -R 1300:1301 ${APP_PATH} && \
+    chmod +x ${APP_PATH}/*.sh
 
 #=======================
 # Install Python & Robot
@@ -146,4 +144,4 @@ EXPOSE 4723
 #==============
 # Start script
 #==============
-CMD /home/androidusr/${SCRIPT_PATH}/start.sh
+CMD ${APP_PATH}/start.sh
