@@ -16,4 +16,17 @@ services:
       - /dev/bus/usb:/dev/bus/usb
       - ~/.android:/root/.android
     privileged: true
+    platform: linux/amd64
     # command: "robot tests/mobile/robot/test.robot"
+
+  selenium-jmeter:
+    build:
+      context: .
+      dockerfile: config/docker/selenium-jmeter/Dockerfile
+    container_name: selenium-jmeter
+    volumes:
+      - ./tests:/bzt-configs/tests
+      - ./results:/bzt-configs/results
+    platform: linux/amd64
+
+  

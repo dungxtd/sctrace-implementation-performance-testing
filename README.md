@@ -1,91 +1,56 @@
 # Docker Setup and Execution Guide
 
-This guide provides instructions on how to build and run Docker containers for web performance and API JMeter tests using the provided Dockerfiles and scripts.
+This guide provides instructions on how to build and run Docker containers for web performance, API JMeter tests, and mobile testing using Docker Compose.
 
 ## Prerequisites
 
-- Ensure Docker is installed on your system. You can download it from [Docker's official website](https://www.docker.com/products/docker-desktop).
+- Ensure Docker and Docker Compose are installed on your system. You can download them from:
+  - [Docker Desktop](https://www.docker.com/products/docker-desktop) (includes Docker Compose)
+  - [Docker Compose](https://docs.docker.com/compose/install/) (standalone installation)
 
-## Building Docker Images
+## Using Docker Compose
 
-Navigate to the root directory of the project where the Dockerfiles are located.
+The project includes a `docker-compose.yaml` file that defines all the necessary services. You can build and run the services using the following commands:
 
-## Windows
-
-### Building Docker Images
-Run the following commands to build the Docker images:
-
-```powershell
-# Build the Selenium JMeter Docker Image
-# For PowerShell
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
-```
-
-### Web Performance Test
-Run the following command to start the container for web performance testing:
-
-```powershell
-# For PowerShell
-docker run -it `
-  --platform linux/amd64 `
-  -v "${PWD}/tests:/bzt-configs/tests" `
-  -v "${PWD}/results:/bzt-configs/results" `
-  taurus-selenium-jmeter:latest `
-  tests/web/taurus/web_performance.yaml
-```
-
-### API JMeter Test
-Run the following command to start the container for API JMeter testing:
-
-```powershell
-# For PowerShell
-docker run -it `
-  --platform linux/amd64 `
-  -v "${PWD}/tests:/bzt-configs/tests" `
-  -v "${PWD}/results:/bzt-configs/results" `
-  taurus-selenium-jmeter:latest `
-  tests/api/jmeter/simple-assert.yml
-```
-
-## Linux/MacOS
-
-### Building Docker Images
-Run the following commands to build the Docker images:
+### Building Services
 
 ```bash
-# Build the Selenium JMeter Docker Image
-# For Bash
-docker build -t taurus-selenium-jmeter:latest -f ./config/docker/sele-jmeter/Dockerfile .
+# Build all services
+docker-compose build
+
+# Build specific service
+docker-compose build selenium-jmeter
+docker-compose build robot-appium
 ```
 
-### Web Performance Test
-Run the following command to start the container for web performance testing:
+### Running Services
+
+#### Selenium JMeter Tests
 
 ```bash
-# For Bash
-docker run -it \
-  --platform linux/amd64 \
-  -v ./tests:/bzt-configs/tests \
-  -v ./results:/bzt-configs/results \
-  taurus-selenium-jmeter:latest \
-  tests/web/taurus/web_performance.yaml
+# Run the selenium-jmeter service
+docker-compose run selenium-jmeter tests/web/taurus/web_performance.yaml
+
+# Run API JMeter tests
+docker-compose run selenium-jmeter tests/api/jmeter/simple-assert.yml
 ```
 
-### API JMeter Test
-Run the following command to start the container for API JMeter testing:
+#### Mobile Testing with Appium
 
 ```bash
-# For Bash
-docker run -it \
-  --platform linux/amd64 \
-  -v ./tests:/bzt-configs/tests \
-  -v ./results:/bzt-configs/results \
-  taurus-selenium-jmeter:latest \
-  tests/api/jmeter/simple-assert.yml
+# Run the robot-appium service
+docker-compose run robot-appium robot tests/mobile/robot/test.robot
+```
+
+### Stopping Services
+
+```bash
+# Stop all running services
+docker-compose down
 ```
 
 ## Notes
 
 - Ensure that the paths to the test and result directories are correctly set in the commands.
 - The Docker images must be built before running the containers.
-- Adjust the volume paths if your directory structure differs.
+- When using Docker Compose, environment variables and volume mappings are automatically handled as defined in the `docker-compose.yaml` file.
