@@ -29,17 +29,18 @@ docker-compose build robot-appium
 
 ```bash
 # Run the taurus-selenium-jmeter service
-docker-compose run taurus-selenium-jmeter tests/web/taurus/web_performance.yaml
+docker-compose run --rm taurus-selenium-jmeter tests/web/taurus/web_performance.yaml
 
 # Run API JMeter tests
-docker-compose run taurus-selenium-jmeter tests/api/jmeter/simple-assert.yml
+docker-compose run --rm taurus-selenium-jmeter tests/api/jmeter/simple-assert.yml
 ```
 
 #### Mobile Testing with Appium
 
 ```bash
 # Run the robot-appium service
-docker-compose run robot-appium robot tests/mobile/robot/test.robot
+docker-compose up robot-appium -d
+docker-compose exec robot-appium bash -c "robot tests/mobile/robot/test.robot"
 ```
 
 ### Stopping Services

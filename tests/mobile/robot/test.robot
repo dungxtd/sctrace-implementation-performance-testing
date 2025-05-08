@@ -13,8 +13,8 @@ Library    OperatingSystem
 
 *** Keywords ***
 Open Browser App
-    ${remote_adb}=    Get Environment Variable    REMOTE_ADB    default=False
-    ${adb_host}=      Set Variable If    '${remote_adb}' == 'true'    host.docker.internal    localhost
+    ${docker_adb}=    Get Environment Variable    DOCKER_ADB_HOST    default=False
+    ${adb_host}=      Set Variable If    '${docker_adb}' == 'true'    host.docker.internal    localhost
     Open Application    
     ...    remote_url=http://localhost:4723
     ...    platformName=Android
@@ -23,7 +23,7 @@ Open Browser App
     ...    appActivity=com.android.browser.BrowserActivity
     ...    automationName=UiAutomator2
     ...    appium:remoteAdbHost=${adb_host}
-    
+
 *** Test Cases ***
 Get Environment Variable
     Log    The value of REMOTE_ADB is: ${REMOTE_ADB}
