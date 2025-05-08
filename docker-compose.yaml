@@ -19,11 +19,11 @@ services:
     platform: linux/amd64
     # command: "robot tests/mobile/robot/test.robot"
 
-  selenium-jmeter:
+  taurus-selenium-jmeter:
     build:
       context: .
-      dockerfile: config/docker/selenium-jmeter/Dockerfile
-    container_name: selenium-jmeter
+      dockerfile: config/docker/taurus-selenium-jmeter/Dockerfile
+    container_name: taurus-selenium-jmeter
     volumes:
       - ./tests:/bzt-configs/tests
       - ./results:/bzt-configs/results

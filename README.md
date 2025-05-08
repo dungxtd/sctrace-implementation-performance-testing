@@ -19,7 +19,7 @@ The project includes a `docker-compose.yaml` file that defines all the necessary
 docker-compose build
 
 # Build specific service
-docker-compose build selenium-jmeter
+docker-compose build taurus-selenium-jmeter
 docker-compose build robot-appium
 ```
 
@@ -28,11 +28,11 @@ docker-compose build robot-appium
 #### Selenium JMeter Tests
 
 ```bash
-# Run the selenium-jmeter service
-docker-compose run selenium-jmeter tests/web/taurus/web_performance.yaml
+# Run the taurus-selenium-jmeter service
+docker-compose run taurus-selenium-jmeter tests/web/taurus/web_performance.yaml
 
 # Run API JMeter tests
-docker-compose run selenium-jmeter tests/api/jmeter/simple-assert.yml
+docker-compose run taurus-selenium-jmeter tests/api/jmeter/simple-assert.yml
 ```
 
 #### Mobile Testing with Appium
