@@ -144,4 +144,4 @@ EXPOSE 4723
 #==============
 # Start script
 #==============
-CMD ${APP_PATH}/start.sh
+ENTRYPOINT ["/bin/sh" "-c" "${APP_PATH}/start.sh"]
