@@ -62,6 +62,7 @@ ENV ANDROID_FOLDER_NAME=cmdline-tools
 ENV ANDROID_DOWNLOAD_PATH=/home/androidusr/${ANDROID_FOLDER_NAME} \
     ANDROID_HOME=/opt/android \
     ANDROID_TOOL_HOME=/opt/android/${ANDROID_FOLDER_NAME}
+ENV ANDROID_ADB_SERVER_ADDRESS="host.docker.internal"
 
 RUN wget -O tools.zip https://dl.google.com/android/repository/${SDK_VERSION}.zip && \
     unzip tools.zip && rm tools.zip && \
